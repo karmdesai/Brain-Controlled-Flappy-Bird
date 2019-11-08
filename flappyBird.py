@@ -104,3 +104,35 @@ class Bird:
 
     def getMask(self):
         return pygame.mask.from_surface(self.currentImage)
+
+# used to draw a window
+def displayWindow(window, bird):
+    window.blit(sceneImage, (0, 0))
+    bird.draw(window)
+    # update the display
+    pygame.display.update()
+
+def main():
+    # create a new instance of the 'Bird' class and a new window
+    flappyBird = Bird(200, 200)
+    newWindow = pygame.display.set_mode((windowWidth, windowHeight))
+    # use the clock to set the 'frame rate'
+    clock = pygame.time.Clock()
+
+    # set gameRun to True (so the while loop runs)
+    gameRun = True
+    while gameRun:
+        # have at most 30 ticks every second
+        clock.tick(30)
+        for event in pygame.event.get():
+            # if the window is closed
+            if event.type == pygame.QUIT:
+                # the game should stop running
+                gameRun = False
+        # move the bird every time the while loop is executed
+        flappyBird.move()
+        displayWindow(newWindow, flappyBird)
+    pygame.quit()
+    quit()
+
+main()
