@@ -29,12 +29,15 @@ class Bird:
         # represents the starting position of the bird
         self.x = x
         self.y = y
+
         # represents how much an image is tilted
         self.tilt = 0
+
         # used to figure out the phsyics of the bird
         self.tickCount = 0
         self.velocity = 0
         self.height = self.y
+
         # used to keep track of what image we're using
         self.imageCount = 0
         self.currentImage = birdImages[0]
@@ -42,6 +45,7 @@ class Bird:
     def flap(self):
         # negative velocity represents moving up in PyGame
         self.velocity = -10.5
+
         # used to represent when we last flapped - reset to 0 when this is called
         self.tickCount = 0
         self.height = self.y
@@ -103,35 +107,176 @@ class Bird:
         window.blit(rotatedImage, newRectangle.topleft)
 
     def getMask(self):
+        # gets us the mask for the current image (used for collisions)
         return pygame.mask.from_surface(self.currentImage)
 
+class Pipe:
+    # the amount of space between two pipes
+    pipeGap = 200
+    # velocity (represents how fast the pipes will move)
+    velocity = 5
+
+    # don't need a 'y' for pipe since height will be randomized
+    def __init__(self, x):
+        self.x = x
+        self.height = 0
+
+        # where the top and bottom of the pipe will be
+        self.top = 0
+        self.bottom = 0
+
+        # this version of the pipe image will be flipped (so it can be used at the top)
+        self.pipeTop = pygame.transform.flip(pipeImage, False, True)
+        self.pipeBottom = pipeImage
+
+        # keep track of whether the bird passed the pipe or not
+        self.pipePassed = False
+        self.setHeight()
+
+    # randomly sets the top, bottom, and height of a pipe
+    def setHeight(self):
+        self.height = random.randrange(50, 450)
+        self.top = self.height - self.pipeTop.get_height()
+        self.bottom = self.height + self.pipeGap
+
+    def move(self):
+        # just move the pipe more left every frame
+        self.x -= self.velocity
+
+    def draw(self, window):
+        # draw the top of the pipe at (x, top)
+        window.blit(self.pipeTop, (self.x, self.top))
+        # draw the bottom of the pipe at (x, bottom)
+        window.blit(self.pipeBottom, (self.x, self.bottom))
+
+    # use masks (basically a 2D list of pixels) for collisions
+    def collide(self, bird):
+        # get the mask for the bird
+        birdMask = bird.getMask()
+        # get the mask for the top/bottom pipes
+        topMask = pygame.mask.from_surface(self.pipeTop)
+        bottomMask = pygame.mask.from_surface(self.pipeBottom)
+
+        # calculate offsets - how far the masks are from each other
+        # offset from the bird to the top mask
+        topOffset = (self.x - bird.x, self.top - round(bird.y))
+        # offset from the bird to the bottom mask
+        bottomOffset = (self.x - bird.x, self.bottom - round(bird.y))
+
+        # finds the point of overlap between the bird mask and the top pipe
+        topPoint = birdMask.overlap(topMask, topOffset)
+        # finds the point of overlap between the bird mask and the bottom pipe
+        bottomPoint = birdMask.overlap(bottomMask, bottomOffset)
+
+        # if these points have a value other than 'None'
+        if topPoint or bottomPoint:
+            # return True to symbolize collision
+            return True
+
+        # return False to symbolize non-collision
+        return False
+
+class Ground:
+    # the velocity should be the same as the pipe
+    velocity = 5
+    groundWidth = groundImage.get_width()
+
+    # 'x' doesn't need to be defined since it'll be moving to the left
+    def __init__(self, y):
+        self.y = y
+        # two panels - used to create an infinite movement animation
+        self.x1 = 0
+        self.x2 = self.groundWidth
+
+    def move(self):
+        # move each panel to the left
+        self.x1 -= self.velocity
+        self.x2 -= self.velocity
+
+        # if the first panel has reached the end, move it behind the second
+        if (self.x1 + self.groundWidth) < 0:
+            self.x1 = self.x2 + self.groundWidth
+
+        # if the second panel has reached the end, move it behind the first
+        if (self.x2 + self.groundWidth) < 0:
+            self.x2 = self.x1 + self.groundWidth
+
+    def draw(self, window):
+        # draw both the panels so we have a ground
+        window.blit(groundImage, (self.x1, self.y))
+        window.blit(groundImage, (self.x2, self.y))
+
 # used to draw a window
-def displayWindow(window, bird):
+def displayWindow(window, bird, pipes, base):
     window.blit(sceneImage, (0, 0))
     bird.draw(window)
+
+    # draw each pipe in the list of pipes
+    for pipe in pipes:
+        pipe.draw(window)
+
+    base.draw(window)
+
     # update the display
     pygame.display.update()
 
 def main():
+    userScore = 0
+
+    # draw the ground and pipes
+    pipes = [Pipe(700)]
+    ground = Ground(730)
+
     # create a new instance of the 'Bird' class and a new window
-    flappyBird = Bird(200, 200)
+    flappyBird = Bird(230, 350)
     newWindow = pygame.display.set_mode((windowWidth, windowHeight))
     # use the clock to set the 'frame rate'
     clock = pygame.time.Clock()
 
     # set gameRun to True (so the while loop runs)
     gameRun = True
+
     while gameRun:
         # have at most 30 ticks every second
         clock.tick(30)
         for event in pygame.event.get():
             # if the window is closed
             if event.type == pygame.QUIT:
-                # the game should stop running
+                # then stop the game
                 gameRun = False
+        
+        # make it look like the bird is moving (it's actually the ground!)
+        ground.move()
+        # get the Mario pipes moving and check for collision
+        removePipes = []
+        addPipe = False
+        for pipe in pipes:
+
+            if pipe.collide(flappyBird):
+                print('game over!')
+
+            # if the pipe is off the screen, remove it
+            if (pipe.x + pipe.pipeTop.get_width()) < 0:
+                removePipes.append(pipe)
+
+            # when the bird passes a pipe, generate a new one
+            if not pipe.pipePassed and (pipe.x < flappyBird.x):
+                pipe.pipePassed = True
+                addPipe = True
+
+            pipe.move()
+
+        if addPipe == True:
+            userScore += 1
+            pipes.append(Pipe(700))
+
+        for oldPipe in removePipes:
+            pipes.remove(oldPipe)
+
         # move the bird every time the while loop is executed
         flappyBird.move()
-        displayWindow(newWindow, flappyBird)
+        displayWindow(newWindow, flappyBird, pipes, ground)
+
     pygame.quit()
     quit()
 
