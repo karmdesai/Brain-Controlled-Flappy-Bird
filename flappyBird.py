@@ -4,11 +4,13 @@ import time
 import pygame
 import random
 
+# Set window location
+os.environ['SDL_VIDEO_WINDOW_POS'] = "%d, %d" % (50, 50)
+
 # Initialize PyGame
 pygame.init()
+pygame.display.set_mode((50, 50))
 pygame.display.set_caption('Flappy Brain')
-icon = pygame.image.load((os.path.join("assets", "icon.png")))
-pygame.display.set_icon(icon)
 
 # list of images - transform regular images to be 1.5 times the original size
 birdImages = [pygame.transform.scale(pygame.image.load(os.path.join("assets", "images", "birdUp.png")), (51, 36)), 
@@ -28,9 +30,9 @@ statFont = pygame.font.SysFont("Didot", 75)
 
 class Bird:
     # controls how much the bird will tilt
-    maxRotation = 25
+    maxRotation = 19
     # how much we're going to rotate on each frame
-    rotationVelocity = 20
+    rotationVelocity = 15
     # how long each bird animation will be shown
     animationTime = 5
 
@@ -53,7 +55,7 @@ class Bird:
 
     def flap(self):
         # negative velocity represents moving up in PyGame
-        self.velocity = -10.5
+        self.velocity = -7.875
 
         # used to represent when we last flapped - reset to 0 when this is called
         self.tickCount = 0
@@ -64,21 +66,21 @@ class Bird:
         # we moved once more since the last jump, so add 1
         self.tickCount += 1
         # this equation tells us how much we're moving up or down
-        d = (self.velocity * self.tickCount) + (1.5 * (self.tickCount ** 2))
+        d = (self.velocity * self.tickCount) + (1.125 * (self.tickCount ** 2))
 
-        # foolproofing logic - if we're moving down more than 16, make 'd' equal to 16
-        if d >= 16:
-            d = 16
+        # foolproofing logic - if we're moving down more than 12, make 'd' equal to 16
+        if d >= 12:
+            d = 12
         # fine-tuning movement
         if d < 0:
-            d -= 2
+            d -= 1.5
 
         # change y position depending on how much we're moving ('d')
         self.y = self.y + d
 
         # controls what the bird looks like when going up
         # when the bird goes up, it'll go up slightly
-        if d < 0 or self.y < self.height + 50:
+        if d < 0 or self.y < self.height + 38:
             if self.tilt < self.maxRotation:
                 self.tilt = self.maxRotation
         # controls what the bird looks like when going down
@@ -216,7 +218,7 @@ class Ground:
         window.blit(groundImage, (self.x2, self.y))
 
 # used to draw a window
-def displayWindow(window, bird, pipes, base, score):
+def displayWindow(window, bird, pipes, ground, score):
     window.blit(sceneImage, (0, 0))
 
     # draw each pipe in the list of pipes
@@ -227,7 +229,8 @@ def displayWindow(window, bird, pipes, base, score):
     text = statFont.render(str(score), 1, (255, 255, 255))
     window.blit(text, (windowWidth - 10 - text.get_width(), 10))
 
-    base.draw(window)
+    # draw the bird and the ground
+    ground.draw(window)
     bird.draw(window)
 
     # update the display
@@ -254,13 +257,22 @@ def main():
         # have at most 30 ticks every second
         clock.tick(30)
         for event in pygame.event.get():
-            # if the window is closed
-            if event.type == pygame.QUIT:
-                # then stop the game
-                gameRun = False
+            try:
+                # if the window is closed
+                if event.type == pygame.QUIT:
+                    # then stop the game
+                    gameRun = False
 
-            if event.type == pygame.KEYUP:
-                flappyBird.flap()
+                # if the 'q' is pressed
+                if event.key == pygame.K_q:
+                    # then stop the game
+                    gameRun = False
+
+                if event.type == pygame.KEYUP:
+                    flappyBird.flap()
+
+            except:
+                pass
         
         # make it look like the bird is moving (it's actually the ground!)
         ground.move()
@@ -270,8 +282,9 @@ def main():
 
         for pipe in pipes:
 
+            # if the bird hits a pipe, restart the main loop
             if pipe.collide(flappyBird):
-                time.sleep(0.5)
+                time.sleep(0.75)
                 main()
 
             # if the pipe is off the screen, remove it
@@ -285,6 +298,7 @@ def main():
 
             pipe.move()
 
+        # add a new pipe and increase score by 1
         if addPipe == True:
             userScore += 1
             pipes.append(Pipe(525))
@@ -292,10 +306,12 @@ def main():
         for oldPipe in removePipes:
             pipes.remove(oldPipe)
 
+        # if the bird hits the ground, restart the main loop
         if (flappyBird.y + flappyBird.currentImage.get_height()) >= 547:
             time.sleep(1)
             main()
 
+        # if the bird hits the top, restart the main loop
         elif (flappyBird.y) <= 0:
             time.sleep(1)
             main()
