@@ -4,27 +4,27 @@ import time
 import pygame
 import random
 
-# PyGame Init
+# Initialize PyGame
 pygame.init()
 pygame.display.set_caption('Flappy Brain')
 icon = pygame.image.load((os.path.join("assets", "icon.png")))
 pygame.display.set_icon(icon)
 
-# list of images - transform regular images to be 2 times the original size
-birdImages = [pygame.transform.scale2x(pygame.image.load(os.path.join("assets", "images", "birdUp.png"))), 
-            pygame.transform.scale2x(pygame.image.load(os.path.join("assets", "images", "birdMiddle.png"))),
-            pygame.transform.scale2x(pygame.image.load(os.path.join("assets", "images", "birdDown.png")))]
+# list of images - transform regular images to be 1.5 times the original size
+birdImages = [pygame.transform.scale(pygame.image.load(os.path.join("assets", "images", "birdUp.png")), (51, 36)), 
+            pygame.transform.scale(pygame.image.load(os.path.join("assets", "images", "birdMiddle.png")), (51, 36)),
+            pygame.transform.scale(pygame.image.load(os.path.join("assets", "images", "birdDown.png")), (51, 36))]
 
-groundImage = pygame.transform.scale2x(pygame.image.load(os.path.join("assets", "images", "theGround.png")))
-sceneImage = pygame.transform.scale2x(pygame.image.load(os.path.join("assets", "images", "backgroundScene.png")))
-pipeImage = pygame.transform.scale2x(pygame.image.load(os.path.join("assets", "images", "marioPipe.png")))
+groundImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "images", "theGround.png")), (504, 168))
+sceneImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "images", "backgroundScene.png")), (432, 768))
+pipeImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "images", "marioPipe.png")), (78, 480))
 
 # set the window width and height
-windowWidth = 500
-windowHeight = 800
+windowWidth = 375
+windowHeight = 600
 
 # fonts
-statFont = pygame.font.SysFont("Didot", 60)
+statFont = pygame.font.SysFont("Didot", 75)
 
 class Bird:
     # controls how much the bird will tilt
@@ -121,7 +121,7 @@ class Bird:
 
 class Pipe:
     # the amount of space between two pipes
-    pipeGap = 300
+    pipeGap = 225
     # velocity (represents how fast the pipes will move)
     velocity = 5
 
@@ -144,7 +144,7 @@ class Pipe:
 
     # randomly sets the top, bottom, and height of a pipe
     def setHeight(self):
-        self.height = random.randrange(50, 450)
+        self.height = random.randrange(38, 338)
         self.top = self.height - self.pipeTop.get_height()
         self.bottom = self.height + self.pipeGap
 
@@ -224,7 +224,7 @@ def displayWindow(window, bird, pipes, base, score):
         pipe.draw(window)
 
     # dispay the score
-    text = statFont.render("Score: " + str(score), 1, (7, 62, 105))
+    text = statFont.render(str(score), 1, (255, 255, 255))
     window.blit(text, (windowWidth - 10 - text.get_width(), 10))
 
     base.draw(window)
@@ -237,11 +237,11 @@ def main():
     userScore = 0
 
     # draw the ground and pipes
-    pipes = [Pipe(700)]
-    ground = Ground(730)
+    pipes = [Pipe(525)]
+    ground = Ground(547)
 
     # create a new instance of the 'Bird' class and a new window
-    flappyBird = Bird(230, 350)
+    flappyBird = Bird(173, 262)
     newWindow = pygame.display.set_mode((windowWidth, windowHeight))
     # use the clock to set the 'frame rate'
     clock = pygame.time.Clock()
@@ -271,7 +271,7 @@ def main():
         for pipe in pipes:
 
             if pipe.collide(flappyBird):
-                time.sleep(1)
+                time.sleep(0.5)
                 main()
 
             # if the pipe is off the screen, remove it
@@ -287,16 +287,16 @@ def main():
 
         if addPipe == True:
             userScore += 1
-            pipes.append(Pipe(700))
+            pipes.append(Pipe(525))
 
         for oldPipe in removePipes:
             pipes.remove(oldPipe)
 
-        if (flappyBird.y + flappyBird.currentImage.get_height()) >= 730:
+        if (flappyBird.y + flappyBird.currentImage.get_height()) >= 547:
             time.sleep(1)
             main()
 
-        elif (flappyBird.y - flappyBird.currentImage.get_height()) <= 0:
+        elif (flappyBird.y) <= 0:
             time.sleep(1)
             main()
 
