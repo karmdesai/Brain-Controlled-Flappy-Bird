@@ -13,13 +13,13 @@ pygame.display.set_mode((50, 50))
 pygame.display.set_caption('Flappy Brain')
 
 # list of images - transform regular images to be 1.5 times the original size
-birdImages = [pygame.transform.scale(pygame.image.load(os.path.join("assets", "images", "birdUp.png")), (51, 36)), 
-            pygame.transform.scale(pygame.image.load(os.path.join("assets", "images", "birdMiddle.png")), (51, 36)),
-            pygame.transform.scale(pygame.image.load(os.path.join("assets", "images", "birdDown.png")), (51, 36))]
+birdImages = [pygame.transform.scale(pygame.image.load(os.path.join("assets", "birdUp.png")), (51, 36)), 
+            pygame.transform.scale(pygame.image.load(os.path.join("assets", "birdMiddle.png")), (51, 36)),
+            pygame.transform.scale(pygame.image.load(os.path.join("assets", "birdDown.png")), (51, 36))]
 
-groundImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "images", "theGround.png")), (504, 168))
-sceneImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "images", "backgroundScene.png")), (432, 768))
-pipeImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "images", "marioPipe.png")), (78, 480))
+groundImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "theGround.png")), (504, 168))
+sceneImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "backgroundScene.png")), (432, 768))
+pipeImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "marioPipe.png")), (78, 480))
 
 # set the window width and height
 windowWidth = 375
