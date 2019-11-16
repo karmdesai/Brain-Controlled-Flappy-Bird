@@ -3,6 +3,7 @@ import os
 import time
 import pygame
 import random
+import socket
 
 # Set window location
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d, %d" % (50, 50)
@@ -13,13 +14,13 @@ pygame.display.set_mode((50, 50))
 pygame.display.set_caption('Flappy Brain')
 
 # list of images - transform regular images to be 1.5 times the original size
-birdImages = [pygame.transform.scale(pygame.image.load(os.path.join("assets", "birdUp.png")), (51, 36)), 
-            pygame.transform.scale(pygame.image.load(os.path.join("assets", "birdMiddle.png")), (51, 36)),
-            pygame.transform.scale(pygame.image.load(os.path.join("assets", "birdDown.png")), (51, 36))]
+birdImages = [pygame.transform.scale(pygame.image.load(os.path.join("assets", "birdUp.png")).convert_alpha(), (51, 36)), 
+            pygame.transform.scale(pygame.image.load(os.path.join("assets", "birdMiddle.png")).convert_alpha(), (51, 36)),
+            pygame.transform.scale(pygame.image.load(os.path.join("assets", "birdDown.png")).convert_alpha(), (51, 36))]
 
-groundImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "theGround.png")), (504, 168))
-sceneImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "backgroundScene.png")), (432, 768))
-pipeImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "marioPipe.png")), (78, 480))
+groundImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "theGround.png")).convert_alpha(), (504, 168))
+sceneImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "backgroundScene.png")).convert_alpha(), (432, 768))
+pipeImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "marioPipe.png")).convert_alpha(), (78, 480))
 
 # set the window width and height
 windowWidth = 375
@@ -217,6 +218,87 @@ class Ground:
         window.blit(groundImage, (self.x1, self.y))
         window.blit(groundImage, (self.x2, self.y))
 
+def getDecDigit(certainDigit):
+    # list of digits / characters
+    characters = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']
+
+    for item in range(len(characters)):
+        # if the passed argument is equal to the item, return it
+        if certainDigit.lower() == characters[item]:
+            return (item)
+
+def hexToDec(hexNum):
+    decNum = 0
+    power = 0
+
+    # -1 step size (go from right to left)
+    for character in range(len(hexNum), 0, -1):
+        try:
+            decNum = decNum + 16 ** power * getDecDigit(hexNum[character - 1])
+            power += 1
+
+        except:
+            return None
+
+    return(int(decNum))
+
+# set the IP address and port
+udpIP = "192.168.0.17"
+udpPort = 7000
+
+# define socket, specify the use of internet and UDP
+mySocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+# bind the socket
+mySocket.bind((udpIP, udpPort))
+
+def eegWave():
+    stocker = []
+    counter = 0
+
+    while True:
+        # print the data received from the server
+        data, address = mySocket.recvfrom(1024)
+        dataPoint = str(data)
+
+        if ('alpha_absolute' in dataPoint):
+            # split on the comma
+            cleanData = dataPoint.split(',')
+            # the string before the comma isn't required
+            cleanData = cleanData[1]
+            # split on the 'x'
+            cleanData = cleanData.split('x')
+            # the 'ffff\\' (at the 0th index) isn't required
+            cleanData = cleanData[1:]
+
+            outData = []
+
+            # convert each item to decimal and add it to outData
+            for item in cleanData:
+                # ignore the last character
+                outData += [hexToDec(item[:-1])]
+
+            finalData = []
+
+            # if the item is an integer and greater than 0, add it to finalData
+            for item in outData:
+                if (isinstance(item, int)) and (item > 0):
+                    finalData += [item]
+
+            if len(finalData) == 0:
+                continue
+
+            stocker += [sum(finalData) / len(finalData)]
+            counter += 1
+
+            if counter == 2:
+                s = sum(stocker) / len(stocker)
+                if s == (sum(finalData) / len(finalData)):
+                    return 1
+
+                else:
+                    return 0
+
 # used to draw a window
 def displayWindow(window, bird, pipes, ground, score):
     window.blit(sceneImage, (0, 0))
@@ -253,9 +335,11 @@ def main():
     gameRun = True
 
     while gameRun:
-        
         # have at most 30 ticks every second
         clock.tick(30)
+
+        out = eegWave()
+
         for event in pygame.event.get():
             try:
                 # if the window is closed
@@ -267,9 +351,6 @@ def main():
                 if event.key == pygame.K_q:
                     # then stop the game
                     gameRun = False
-
-                if event.type == pygame.KEYUP:
-                    flappyBird.flap()
 
             except:
                 pass
@@ -297,6 +378,12 @@ def main():
                 addPipe = True
 
             pipe.move()
+
+        if out == 0:
+            pass
+
+        elif out == 1:
+            flappyBird.flap()
 
         # add a new pipe and increase score by 1
         if addPipe == True:
