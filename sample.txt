@@ -1,0 +1,204 @@
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DV\x15\xf7DT!BDU\xba?DT\xcbC'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DVrbDV\xa6\xc1DU?\x83DU:i'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DUK\x13DUM\x7fDS\xde=DUN\x90'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DUF1DU\xc7\xbaDU\x8f\xb0DU\xb9\x89'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DV\xf2\x8eDWR\xe3DV\x94uDVUk'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DX:jDU\x83\xf5DU\xb5\xbfDV\x96\xa0'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DX \x9cDV\x08\xe9DV\x0blDV\xb4\xb1'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DW\x88\xecDT\xd8\xe0DS\xcf\xf1DU\xed\x02'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DX\x03\x8bDT\xe0\x85DSZ\x0eDU\xc1\x7f'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DW\xd9\x15DW\xc1\rDT\x85\xbeDV\x82\x9e'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DX6\x14DU\xdbIDT$<DW\xc5/'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DW\xb5\xbbDU\xaaXDV\x00\x8aDV\x84\x94'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DX\xfd_DW7\x1eDU\xb5\x80DV\xcfS'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DYE\x8fDV\x8b+DU\xa31DWu\xea'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DT!@DV\x8e\xc3DV\xa1\xa4DQ\xe3\xc2'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DR\x9ebDUz+DV\x02\xa8DO\x8c\x05'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DQ\x96JDX\x94\xf0DX?\tDO\n\x98'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DM5\xdaDY~qDY\x19CDK31'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DL-\x99DW\xe8\\DW\xff.DJ\x19\x9d'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DM\xd6MDYp)DW\x05IDKT1'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DJ\xe4\xdcDX\xac\x1dDUf!DI\x0f\xe3'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DI@\xebDW\xb2\x0cDV\x13\xcbDG\xe7\xcb'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DH)\xc1DXe\xfeDW\x0clDF\xa2\xd5'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DF\xe0\x9eDW\x98\x97DV\x16CDE\xdbp'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DG\xd5,DY\xef\xfeDY\xaecDG\xc5\x07'
+b"Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DE\xde\xb4DY\x8d'D[&\x8cDE\xdb\xf3"
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DH\x91\x15DV\xf5\x8eDW\xf1\xa2DG\xe0/'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DJ ~DV\xa0BDYz\xfbDJ\x1e\x08'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DF\xb7\x8eDU\xa9\xbdDY\xd7\xcbDG\x95\xd7'       
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DG\xd1\x9bDU\xc1\xc6DW\xc6\xf4DH\xa5b'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DJ\xaa\x02DU\x12\xbeDWX\xe2DK\x95-'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DJ\x18\x99DV\xc2\x8fDX\x9b\x9aDK\x8a\t'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DJ\xdfkDW\xfc\xf0DX\x85\xc7DLM\xde'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DM\xa7\xf1DV\xa8\x80DW\x80KDO=['
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DN?\x9cDV-\xb2DW\xb4!DO\xbb\x1c'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DN\\HDU\xd2\xbcDV\xf43DP\xe5\x81'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DO\x8bsDT\xb1*DV\xf0\x89DQ\xb0\x0f'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DO\xcc\xd1DT\x17xDV\xcc\xe8DQ\xcc<'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DP@*DS\xd0\xc9DV\\\xa0DR6e'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DP\xce\xdbDTvODW\xde\xc3DR/\x07'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DPunDW\x1f\x9dDY\x871DRh\xcb'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DP<8DV\xcd\xfdDX\xb4\xb0DSsF'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DQ:+DU\xd4ADX\xa4-DT\xd0/'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DQ\xcb\x0eDVa)DY\x82\x9cDU\x10\xe2'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DR\x0eyDV\x18\xbcDX\x1cHDT\xc9\xfd'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DS\x1c\xedDS\x82\x01DU\x88\xc8DU\x86\xec'       
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DU#sDT\x92;DV\x03\x1bDU\xa8\x1f'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DU\xd8\x1bDV\xe2oDV\xf0\xd9DU\xf0\x13'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DU\x88\xaaDU\xf0\xbaDW\x0c\xd3DW/\xed'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DU\xa79DT\xe0\xebDV\xdc\xc7DV\x99u'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DUIZDT\x9c\x9aDW3\xdcDVH\x98'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DU\x15\xbfDT\xb0\xf4DW\x1c\x1cDU\xa5\x0f'       
+b"Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DU[\x87DTG>DU\x17'DU\x81\xeb"
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DVHIDSw|DSy\xa7DVI\x14'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DW)\x8dDT\xd7\xceDS\xb3kDV\x93R'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DU\xf4&DU\x7f DU.>DV\x84T'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DT\xf2\xe4DS\x80*DT2yDU\xedF'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DT\xd45DTkODT\xf3\xe8DT<|'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DR\x9a\xe5DT;\xaaDWe\x0fDRMw'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DR\x1d\x03DS\xdb\xfeDW\xfa\xe7DR\xd1|'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DRc`DTasDW FDR\x97S'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DS\x02,DR\x01\x1aDW\x0c\x96DR\xb7Z'
+b"Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DS'\xb4DR\x0c\xe3DX\xb2\x12DT\x98\xaa"
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DS,\x13DS\x11*DV\xb9\x81DT\x99\x9b'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DTt\x8fDQ\xfb\xd2DUw\x86DT\x8d!'
+b'Muse-C2C0/notch_filtered_eeg\x00\x00\x00\x00,ffff\x00\x00\x00DT\x86\xb4DR\xb3]DV\xca\xc1DT\xb5\n'
+
+--------------------------------------------------------------------------------------------------
+
+if ('notch_filtered_eeg' in dataPoint) and ('variance' not in dataPoint):
+        # split on the comma
+        cleanData = dataPoint.split(',')
+        # the string before the comma isn't required
+        cleanData = cleanData[1]
+        # split on the 'x'
+        cleanData = cleanData.split('x')
+        # the 'ffff\\' (at the 0th index) isn't required
+        cleanData = cleanData[1:]
+
+        outData = []
+
+        # convert each item to decimal and add it to outData
+        for item in cleanData:
+            # ignore the last character
+            outData += [hexToDec(item[:-1])]
+
+        finalData = []
+
+        # if the item is an integer and greater than 0, add it to finalData
+        for item in outData:
+            if (isinstance(item, int)) and (item > 0):
+                finalData += [item]
+
+        print(finalData)
+
+---------------------------------------------------------------------------------
+def getDecDigit(certainDigit):
+    # list of digits / characters
+    characters = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']
+
+    for item in characters:
+        # if the passed argument is equal to the item, return it
+        if certainDigit.lower() == item:
+            return (item)
+
+def hexToDec(hexNum):
+    decNum = 0
+    power = 0
+
+    # -1 step size (go from right to left)
+    for character in range(len(hexNum), 0, -1):
+        try:
+            decNum = decNum + 16 ** power * getDecDigit(hexNum[character - 1])
+            power += 1
+
+        except:
+            return None
+
+    return(int(decNum))
+
+----------------------------------------------------------------------------------------------
+# import the required libraries
+import socket
+import time
+
+# set the IP address and port
+udpIP = "192.168.0.17"
+udpPort = 7000
+
+# define socket, specify the use of internet and UDP
+mySocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+# bind the socket
+mySocket.bind((udpIP, udpPort))
+
+def getDecDigit(certainDigit):
+    # list of digits / characters
+    characters = ['0','1','2','3','4','5','6','7','8','9','a','b','c','d','e','f']
+
+    for item in range(len(characters)):
+        # if the passed argument is equal to the item, return it
+        if certainDigit.lower() == characters[item]:
+            return (item)
+
+def hexToDec(hexNum):
+    decNum = 0
+    power = 0
+
+    # -1 step size (go from right to left)
+    for character in range(len(hexNum), 0, -1):
+        try:
+            decNum = decNum + 16 ** power * getDecDigit(hexNum[character - 1])
+            power += 1
+
+        except:
+            return None
+
+    return(int(decNum))
+
+while True:
+    # print the data received from the server
+    data, address = mySocket.recvfrom(1024)
+    dataPoint = str(data)
+
+    stocker = []
+    counter = 0
+
+    if ('notch_filtered_eeg' in dataPoint) and ('variance' not in dataPoint):
+        # split on the comma
+        cleanData = dataPoint.split(',')
+        # the string before the comma isn't required
+        cleanData = cleanData[1]
+        # split on the 'x'
+        cleanData = cleanData.split('x')
+        # the 'ffff\\' (at the 0th index) isn't required
+        cleanData = cleanData[1:]
+
+        outData = []
+
+        # convert each item to decimal and add it to outData
+        for item in cleanData:
+            # ignore the last character
+            outData += [hexToDec(item[:-1])]
+
+        finalData = []
+
+        # if the item is an integer and greater than 0, add it to finalData
+        for item in outData:
+            if (isinstance(item, int)) and (item > 0):
+                finalData += [item]
+
+        if len(finalData) == 0:
+            continue
+
+        stocker += [sum(finalData) / len(finalData)]
+        counter += 1
+
+        if counter == 2:
+            s = sum(stocker) / len(stocker)
+
+            if s == (sum(finalData) / len(finalData)):
+                print('Yes?')
+            else:
+                print('No?')

@@ -125,7 +125,7 @@ class Pipe:
     # the amount of space between two pipes
     pipeGap = 225
     # velocity (represents how fast the pipes will move)
-    velocity = 5
+    velocity = 4
 
     # don't need a 'y' for pipe since height will be randomized
     def __init__(self, x):
@@ -189,7 +189,7 @@ class Pipe:
 
 class Ground:
     # the velocity should be the same as the pipe
-    velocity = 5
+    velocity = 4
     groundWidth = groundImage.get_width()
 
     # 'x' doesn't need to be defined since it'll be moving to the left
@@ -274,7 +274,7 @@ def main():
             except:
                 pass
         
-        # make it look like the bird is moving (it's actually the ground!)
+        # make it look like the bird is moving (it's actually the ground moving)
         ground.move()
         # get the Mario pipes moving and check for collision
         removePipes = []
