@@ -220,7 +220,7 @@ class Ground:
 
 # set the IP address and port
 udpIP = "192.168.0.17"
-udpPort = 8000
+udpPort = 7000
 
 # define socket, specify the use of internet and UDP
 mySocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -321,9 +321,9 @@ def main():
                 addPipe = True
 
             pipe.move()
-        
-        output = eegWave()
 
+        output = eegWave()
+        
         if output == 1:
             flappyBird.flap()
 
