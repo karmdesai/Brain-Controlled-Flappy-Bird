@@ -220,7 +220,7 @@ class Ground:
 
 # set the IP address and port
 udpIP = "192.168.0.17"
-udpPort = 7000
+udpPort = 9000
 
 # define socket, specify the use of internet and UDP
 mySocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -232,16 +232,13 @@ def eegWave():
     while True:
         # print the data received from the server
         data, address = mySocket.recvfrom(1024)
-        dataPoint = str(data)   
 
-        if ('blink' in dataPoint):
-            lastNumber = int(dataPoint[-2])
+        if (data == b'1'):
+            return 1
 
-            if (lastNumber == 1):
-                return 1
+        else:
+            break
 
-            else:
-                break
     return 0
 
 # used to draw a window
