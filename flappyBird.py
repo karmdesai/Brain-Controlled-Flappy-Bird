@@ -1,9 +1,10 @@
 # import the required libraries
 import os
+import sys
 import time
 import pygame
 import random
-import socket
+from modules.customSocket import newSocket
 
 # Set window location
 os.environ['SDL_VIDEO_WINDOW_POS'] = "%d, %d" % (50, 50)
@@ -218,31 +219,8 @@ class Ground:
         window.blit(groundImage, (self.x1, self.y))
         window.blit(groundImage, (self.x2, self.y))
 
-# set the IP address and port
-udpIP = "192.168.0.17"
-udpPort = 8000
-
-# define socket, specify the use of internet and UDP
-mySocket = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-
-# bind the socket
-mySocket.bind((udpIP, udpPort))
-
-def eegWave():
-    while True:
-        # print the data received from the server
-        data, address = mySocket.recvfrom(1024)
-        dataPoint = str(data)   
-
-        if ('blink' in dataPoint):
-            lastNumber = int(dataPoint[-2])
-
-            if (lastNumber == 1):
-                return 1
-
-            else:
-                break
-    return 0
+# create a new instance of the 'newSocket' class
+s = newSocket(sys.argv[1], int(sys.argv[2]))
 
 # used to draw a window
 def displayWindow(window, bird, pipes, ground, score):
@@ -322,7 +300,7 @@ def main():
 
             pipe.move()
         
-        output = eegWave()
+        output = s.eegWave()
 
         if output == 1:
             flappyBird.flap()
