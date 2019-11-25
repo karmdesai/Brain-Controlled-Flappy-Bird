@@ -1,42 +1,37 @@
 # import the required libraries
 import os
-import sys
 import time
 import pygame
 import random
-from modules.customSocket import newSocket
-
-# Set window location
-os.environ['SDL_VIDEO_WINDOW_POS'] = "%d, %d" % (50, 50)
-
-# Initialize PyGame
-pygame.init()
-pygame.display.set_mode((50, 50))
-pygame.display.set_caption('Flappy Brain')
-
-# list of images - transform regular images to be 1.5 times the original size
-birdImages = [pygame.transform.scale(pygame.image.load(os.path.join("assets", "birdUp.png")).convert(), (51, 36)), 
-            pygame.transform.scale(pygame.image.load(os.path.join("assets", "birdMiddle.png")).convert(), (51, 36)),
-            pygame.transform.scale(pygame.image.load(os.path.join("assets", "birdDown.png")).convert(), (51, 36))]
-
-groundImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "theGround.png")).convert(), (504, 168))
-sceneImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "backgroundScene.png")).convert(), (432, 768))
-pipeImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "marioPipe.png")).convert(), (78, 480))
-
-# set the window width and height
-windowWidth = 375
-windowHeight = 600
-
-# fonts
-statFont = pygame.font.SysFont("Didot", 75)
 
 class Bird:
+    os.environ['SDL_VIDEO_WINDOW_POS'] = "%d, %d" % (50, 50)
+    
+    windowWidth = 375
+    windowHeight = 600
+
+    """ Set window location and initialize pyGame
+    Also, set the screen size (when the bird is created)
+
+    This is inefficient because we're calling it twice
+    (once in the main loop and once here), but is somehow
+    makes the game less choppy """
+
+    pygame.init()
+    pygame.display.set_mode((50, 50))
+    newWindow = pygame.display.set_mode((windowWidth, windowHeight))
+    
     # controls how much the bird will tilt
     maxRotation = 19
     # how much we're going to rotate on each frame
     rotationVelocity = 15
     # how long each bird animation will be shown
     animationTime = 5
+
+    # list of images - transform regular images to be 1.5 times the original size
+    birdImages = [pygame.transform.scale(pygame.image.load(os.path.join("assets", "birdUp.png")).convert(), (51, 36)), 
+                pygame.transform.scale(pygame.image.load(os.path.join("assets", "birdMiddle.png")).convert(), (51, 36)),
+                pygame.transform.scale(pygame.image.load(os.path.join("assets", "birdDown.png")).convert(), (51, 36))]
 
     def __init__(self, x, y):
         # represents the starting position of the bird
@@ -49,11 +44,16 @@ class Bird:
         # used to figure out the phsyics of the bird
         self.tickCount = 0
         self.velocity = 0
-        self.height = self.y
+        self.height = y
 
         # used to keep track of what image we're using
         self.imageCount = 0
-        self.currentImage = birdImages[0]
+        self.currentImage = self.birdImages[0]
+
+        # Initialize PyGame
+        pygame.init()
+        pygame.display.set_mode((50, 50))
+        pygame.display.set_caption('Brain-Controlled Flappy Bird')
 
     def flap(self):
         # negative velocity represents moving up in PyGame
@@ -97,21 +97,21 @@ class Bird:
 
         # use animationTime and imageCount to create a 'flapping' animation
         if self.imageCount < self.animationTime:
-            self.currentImage = birdImages[0]
+            self.currentImage = self.birdImages[0]
         elif self.imageCount < (self.animationTime * 2):
-            self.currentImage = birdImages[1]
+            self.currentImage = self.birdImages[1]
         elif self.imageCount < (self.animationTime * 3):
-            self.currentImage = birdImages[2]
+            self.currentImage = self.birdImages[2]
         elif self.imageCount < (self.animationTime * 4):
-            self.currentImage = birdImages[1]
+            self.currentImage = self.birdImages[1]
         elif self.imageCount < ((self.animationTime * 4) + 1):
-            self.currentImage = birdImages[0]
+            self.currentImage = self.birdImages[0]
             # reset imageCount
             self.imageCount = 0
 
         # avoid the bird from 'flapping' if it's going downwards
         if self.tilt <= -80:
-            self.currentImage = birdImages[1]
+            self.currentImage = self.birdImages[1]
             self.imageCount = self.animationTime * 2
 
         # rotate the flappy bird image about the center
@@ -129,6 +129,8 @@ class Pipe:
     # velocity (represents how fast the pipes will move)
     velocity = 4
 
+    pipeImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "marioPipe.png")).convert(), (78, 480))
+
     # don't need a 'y' for pipe since height will be randomized
     def __init__(self, x):
         self.x = x
@@ -139,8 +141,8 @@ class Pipe:
         self.bottom = 0
 
         # this version of the pipe image will be flipped (so it can be used at the top)
-        self.pipeTop = pygame.transform.flip(pipeImage, False, True)
-        self.pipeBottom = pipeImage
+        self.pipeTop = pygame.transform.flip(self.pipeImage, False, True)
+        self.pipeBottom = self.pipeImage
 
         # keep track of whether the bird passed the pipe or not
         self.pipePassed = False
@@ -192,6 +194,7 @@ class Pipe:
 class Ground:
     # the velocity should be the same as the pipe
     velocity = 4
+    groundImage = pygame.transform.scale(pygame.image.load(os.path.join("assets", "theGround.png")).convert(), (504, 168))
     groundWidth = groundImage.get_width()
 
     # 'x' doesn't need to be defined since it'll be moving to the left
@@ -216,118 +219,5 @@ class Ground:
 
     def draw(self, window):
         # draw both the panels so we have a ground
-        window.blit(groundImage, (self.x1, self.y))
-        window.blit(groundImage, (self.x2, self.y))
-
-# create a new instance of the 'newSocket' class
-s = newSocket(sys.argv[1], int(sys.argv[2]))
-
-# used to draw a window
-def displayWindow(window, bird, pipes, ground, score):
-    window.blit(sceneImage, (0, 0))
-
-    # draw each pipe in the list of pipes
-    for pipe in pipes:
-        pipe.draw(window)
-
-    # dispay the score
-    text = statFont.render(str(score), 1, (255, 255, 255))
-    window.blit(text, (windowWidth - 10 - text.get_width(), 10))
-
-    # draw the bird and the ground
-    ground.draw(window)
-    bird.draw(window)
-
-    # update the display
-    pygame.display.update()
-
-def main():
-    userScore = 0
-
-    # draw the ground and pipes
-    pipes = [Pipe(525)]
-    ground = Ground(547)
-
-    # create a new instance of the 'Bird' class and a new window
-    flappyBird = Bird(173, 262)
-    newWindow = pygame.display.set_mode((windowWidth, windowHeight))
-    # use the clock to set the 'frame rate'
-    clock = pygame.time.Clock()
-
-    # set gameRun to True (so the while loop runs)
-    gameRun = True
-
-    while gameRun:
-        # have at most 30 ticks every second
-        clock.tick(30)
-
-        for event in pygame.event.get():
-            try:
-                # if the window is closed
-                if event.type == pygame.QUIT:
-                    # then stop the game
-                    gameRun = False
-
-                # if the 'q' is pressed
-                if event.key == pygame.K_q:
-                    # then stop the game
-                    gameRun = False
-
-            except:
-                pass
-        
-        # make it look like the bird is moving (it's actually the ground moving)
-        ground.move()
-        # get the Mario pipes moving and check for collision
-        removePipes = []
-        addPipe = False
-
-        for pipe in pipes:
-
-            # if the bird hits a pipe, restart the main loop
-            if pipe.collide(flappyBird):
-                time.sleep(0.75)
-                main()
-
-            # if the pipe is off the screen, remove it
-            if (pipe.x + pipe.pipeTop.get_width()) < 0:
-                removePipes.append(pipe)
-
-            # when the bird passes a pipe, generate a new one
-            if not pipe.pipePassed and (pipe.x < flappyBird.x):
-                pipe.pipePassed = True
-                addPipe = True
-
-            pipe.move()
-        
-        output = s.eegWave()
-
-        if output == 1:
-            flappyBird.flap()
-
-        # add a new pipe and increase score by 1
-        if addPipe == True:
-            userScore += 1
-            pipes.append(Pipe(525))
-
-        for oldPipe in removePipes:
-            pipes.remove(oldPipe)
-
-        # if the bird hits the ground, restart the main loop
-        if (flappyBird.y + flappyBird.currentImage.get_height()) >= 547:
-            time.sleep(1)
-            main()
-
-        # if the bird hits the top, restart the main loop
-        elif (flappyBird.y) <= 0:
-            time.sleep(1)
-            main()
-
-        # move the bird every time the while loop is executed
-        flappyBird.move()
-        displayWindow(newWindow, flappyBird, pipes, ground, userScore)
-
-    pygame.quit()
-    quit()
-
-main()
+        window.blit(self.groundImage, (self.x1, self.y))
+        window.blit(self.groundImage, (self.x2, self.y))

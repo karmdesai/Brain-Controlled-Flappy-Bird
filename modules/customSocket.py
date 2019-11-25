@@ -1,3 +1,4 @@
+# import the required libraries
 import socket
 
 # create a class for our socket
