@@ -12,7 +12,7 @@ $ cd Brain-Controlled-Flappy-Bird
 $ python main.py <IP address> <Port>
 ```
 
-The two parameters, ```sh**IP address**``` and ```sh**Port**``` should be replaced with the IP address of your computer and the port that you're streaming the data to, respectively. As an example:
+The two parameters, ```IP address``` and ```Port``` should be replaced with the IP address of your computer and the port that you're streaming the data to, respectively. As an example:
 
 ```sh
 $ python main.py 127.0.0.1 7000
